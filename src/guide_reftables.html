@@ -1,0 +1,67 @@
+<h3>Proposed GPIO map, controller (Heltec WiFi LoRa 32 V3)</h3>
+<p>Pins used on the board itself and left alone: LoRa SX1262 on GPIO 8–14, the on-board 0.96″ OLED on I²C GPIO 17/18 with reset on 21,
+Vext switch 36, LED 35, PRG button 0, USB-serial on 43/44, battery sense 1 with 37. <b>Check every row against Heltec's current
+V3 pinout before soldering</b> (Stage 2); GPIO 0, 3, 45 and 46 are ESP32-S3 strapping pins and are avoided for inputs that could be
+held at boot.</p>
+<table><thead><tr><th>Signal</th><th>GPIO</th><th>Notes</th></tr></thead><tbody>
+<tr><td>OLED SCK / MOSI</td><td class="mono">5 / 6</td><td>SPI on a second host; 10 MHz</td></tr>
+<tr><td>OLED CS / DC / RST</td><td class="mono">7 / 4 / 3</td><td>MONOLITH second OLED: CS on 2</td></tr>
+<tr><td>I²C SDA / SCL</td><td class="mono">17 / 18</td><td>Shared with the on-board OLED: PN532 0x24, MCP23017 0x20, ADS1115 0x48</td></tr>
+<tr><td>I²S BCLK / LRC / DOUT</td><td class="mono">47 / 48 / 33</td><td>MAX98357A</td></tr>
+<tr><td>GPS RX / TX (MCU side)</td><td class="mono">40 / 39</td><td>9600 baud</td></tr>
+<tr><td>Encoder A / B</td><td class="mono">38 / 34</td><td>Push switch on the MCP23017</td></tr>
+<tr><td>KEY / FIRE / COVER</td><td class="mono">26 / 42 / 41</td><td>INPUT_PULLUP, switch to ground</td></tr>
+<tr><td>LED DATA</td><td class="mono">19</td><td>Through 74AHCT125 and 330 Ω</td></tr>
+<tr><td>MCP23017 INT</td><td class="mono">20</td><td>Pad keys/toggles GPA0–5, MODE GPA6, encoder push GPA7 (all three panels)</td></tr>
+<tr><td>MONOLITH levers</td><td class="mono">I²C</td><td>Two ADS1115 (0x48 levers 1–4, 0x49 levers 5–6); top 10 % of travel = committed</td></tr>
+</tbody></table>
+<h3>Proposed GPIO map, RELAY-6</h3>
+<table><thead><tr><th>Signal</th><th>GPIO</th><th>Notes</th></tr></thead><tbody>
+<tr><td>FIRE_1 … FIRE_6</td><td class="mono">2, 3, 4, 5, 6, 7</td><td>100 kΩ pull-downs at the driver inputs; drivers unpowered in SAFE, so a boot glitch cannot fire</td></tr>
+<tr><td>ARM_EN</td><td class="mono">26</td><td>To U3 A; 100 kΩ pull-down</td></tr>
+<tr><td>HEARTBEAT</td><td class="mono">47</td><td>To U2 B; toggled on each valid packet</td></tr>
+<tr><td>SIREN</td><td class="mono">48</td><td>Q8 gate</td></tr>
+<tr><td>BEACON data</td><td class="mono">33</td><td>Through 74AHCT125</td></tr>
+<tr><td>K1 sense</td><td class="mono">41</td><td>PAD+ through 100 k / 22 k divider: detects a welded K1 (FAULT)</td></tr>
+<tr><td>KEY sense</td><td class="mono">42</td><td>Junction of S2 and the K1 coil through 100 k / 22 k: the pad key position</td></tr>
+<tr><td>I²C SDA / SCL</td><td class="mono">17 / 18</td><td>ADS1115 #1 0x48 (TEST, PAD−1…3), #2 0x49 (PAD−4…6, WIND), INA228 0x40 (shunt current and battery voltage on VBUS)</td></tr>
+</tbody></table>
+<h3>Packet</h3>
+<table><thead><tr><th>Field</th><th>Bytes</th><th>Content</th></tr></thead><tbody>
+<tr><td>System ID</td><td>4</td><td>Random, written at pairing; identifies this controller–pad box pair</td></tr>
+<tr><td>Bank</td><td>1</td><td>1–99; 1 for a single pad box</td></tr>
+<tr><td>Type</td><td>1</td><td>See below</td></tr>
+<tr><td>Counter</td><td>4</td><td>Sender's 32-bit counter, strictly increasing, kept in flash</td></tr>
+<tr><td>Payload</td><td>0–24</td><td>Type-specific</td></tr>
+<tr><td>Tag</td><td>8</td><td>AES-128-CMAC over all fields above, truncated to 8 bytes</td></tr>
+<tr><td>(CRC)</td><td>2</td><td>Added and checked by the LoRa radio</td></tr>
+</tbody></table>
+<h3>Message types</h3>
+<table><thead><tr><th>Type</th><th>From</th><th>Payload</th></tr></thead><tbody>
+<tr><td class="mono">0x01 HEARTBEAT</td><td>both</td><td>state, flags</td></tr>
+<tr><td class="mono">0x02 STATUS</td><td>pad box</td><td>6 × Ω (mΩ, u16), battery mV, wind (0.1 m/s), RSSI, SNR, key state</td></tr>
+<tr><td class="mono">0x10 SELECT</td><td>controller</td><td>pad mask, mode, ripple step (10 ms units)</td></tr>
+<tr><td class="mono">0x11 ARM_REQ</td><td>controller</td><td>pad mask, mode</td></tr>
+<tr><td class="mono">0x12 CHALLENGE</td><td>pad box</td><td>nonce (8 bytes)</td></tr>
+<tr><td class="mono">0x13 ARM</td><td>controller</td><td>pad mask, mode, nonce, RSO card ID (4)</td></tr>
+<tr><td class="mono">0x14 ARMED</td><td>pad box</td><td>pad mask, nonce</td></tr>
+<tr><td class="mono">0x20 FIRE</td><td>controller</td><td>pad mask, mode, ripple step, nonce</td></tr>
+<tr><td class="mono">0x21 FIRED</td><td>pad box</td><td>6 × ignition time (ms, u16; 0xFFFF = NO FIRE)</td></tr>
+<tr><td class="mono">0x30 SAFE</td><td>both</td><td>reason code</td></tr>
+</tbody></table>
+<h3>Timing and limits (firmware constants)</h3>
+<table><thead><tr><th>Constant</th><th>Value</th><th>Why</th></tr></thead><tbody>
+<tr><td>Heartbeat interval</td><td>250 ms</td><td>Four chances per second</td></tr>
+<tr><td>Link-loss SAFE (firmware)</td><td>1.0 s</td><td>Four missed heartbeats</td></tr>
+<tr><td>Watchdog U2 (hardware)</td><td>0.8–1.2 s, measured: ____</td><td>Set in Stage 3</td></tr>
+<tr><td>Nonce lifetime</td><td>30 s</td><td>Time to walk the key and call the range</td></tr>
+<tr><td>Ω reading max age to arm</td><td>10 s</td><td>Clips disturbed after the reading</td></tr>
+<tr><td>Ω window (default, per pad)</td><td>0.3–5.0 Ω</td><td>Set per igniter type</td></tr>
+<tr><td>Fire pulse</td><td>1.0 s per pad</td><td>Long enough for model-rocket igniters; e-matches fire in milliseconds</td></tr>
+<tr><td>Ripple step</td><td>0.25–5.0 s</td><td>Operator's choice</td></tr>
+<tr><td>Countdown</td><td>5 s, FIRE held</td><td>The safety codes call for a countdown</td></tr>
+<tr><td>Wind lock-out</td><td>20 mph gust</td><td>The NAR code's wind limit for model rockets; set lower for your field</td></tr>
+<tr><td>Radio</td><td>915.0 MHz, SF8, BW 500 kHz, CR 4/5, sync 0x12, 14 dBm</td><td>firmware/src/common/board.h</td></tr>
+<tr><td>Battery low</td><td>11.8 V at rest</td><td>Lead-acid about 20 % left; charge before flying</td></tr>
+<tr><td>Link margin warning</td><td>SNR &lt; 0 dB or RSSI &lt; −110 dBm</td><td>Adjust after the range test</td></tr>
+</tbody></table>

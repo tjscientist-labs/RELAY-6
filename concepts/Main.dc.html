@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Launcher overview</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#46E0FF}a:hover{color:#9BEFFF}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1080px; box-sizing: border-box; padding: 56px 64px; background: #0E1114; color: #E8EEF2; font-family: 'Chakra Petch', sans-serif; display: flex; flex-direction: column; gap: 36px">
+
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid #2A323A; padding-bottom: 24px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; color: {{accent}}">MODEL ROCKETRY · LAUNCHERS · DESIGN STUDY 01</div>
+      <h1 style="margin: 0; font-size: 56px; font-weight: 700; letter-spacing: 1px; line-height: 1">Six-pad wireless launch controller</h1>
+      <div style="font-size: 20px; color: #9AA7B2">Two-way radio · OLED · fire one pad or all six · a sci-fi case built on a Pelican-style shell</div>
+    </div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #9AA7B2; text-align: right; line-height: 1.7">REV 0.1 · 2026-11-18<br>CONCEPT · NOT A BUILD SPEC</div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px">
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; color: {{accent}}">01 · BRIEF</div>
+      <div style="font-size: 17px; line-height: 1.55; color: #C9D3DB">A hand-carried controller at the flight line talks to a pad box out at the rack. The radio link goes both ways: the box reports back on every pad before anything can fire. Up to six rockets: fire one, pick several, or salvo all six. The case should look like it belongs on a starship, and it has to survive a field.</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; color: {{accent}}">02 · SOURCES</div>
+      <div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px; line-height: 1.45; color: #C9D3DB">
+        <div><span style="color: #E8EEF2; font-weight: 600">TeleLaunch</span> (Altus Metrum): 2-way 70 cm radio, AES-authenticated packets, 100 µA continuity check, local and remote arm, hold-to-launch, drag races, Pelican 1170 controller.</div>
+        <div><span style="color: #E8EEF2; font-weight: 600">Overkill Launch Controller</span> (Edward Robinson, 2020): briefcase panel in carbon wrap, security code, 15 s countdown, big e-stop, mode switches, wired backup, beacon light.</div>
+        <div><span style="color: #E8EEF2; font-weight: 600">Video walkthrough</span> of the same controller (YouTube, 14 Apr 2020).</div>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; color: {{accent}}">03 · SAFETY, NON-NEGOTIABLE</div>
+      <div style="display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.4; color: #C9D3DB">
+        <div>• Removable key in series with the fire circuit, at both ends</div>
+        <div>• Fire control springs back to OFF when released</div>
+        <div>• No arm without an ACK from the pad box</div>
+        <div>• Link lost for more than 1 s → the pad box disarms itself</div>
+        <div>• E-stop removes pyro power in hardware, not just in code</div>
+        <div>• Wired backup for the day the radio won't play</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 16px">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; color: {{accent}}">04 · SYSTEM</div>
+    <div style="display: flex; align-items: center; gap: 0">
+      <div style="width: 330px; box-sizing: border-box; border: 1px solid {{accent}}; border-radius: 10px; padding: 18px 20px; background: #161B20; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-size: 22px; font-weight: 700">Controller</div>
+        <div style="font-size: 14px; color: #9AA7B2; line-height: 1.45">ESP32-S3 · 3.12″ 256×64 OLED · rotary encoder · key switch · 6 lit pad selects · covered FIRE · e-stop · speaker · GPS · 2S Li-ion</div>
+      </div>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0 12px">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #46E0FF">ARM · SELECT · FIRE · HEARTBEAT →</div>
+        <div style="width: 100%; height: 2px; background: #46E0FF"></div>
+        <div style="width: 100%; height: 2px; background: #3BE07A"></div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #3BE07A">← CONTINUITY Ω · BATT · WIND · ACK · RSSI</div>
+        <div style="font-size: 13px; color: #9AA7B2">LoRa SX1262 · 915 MHz · AES-128 + rolling counter</div>
+      </div>
+      <div style="width: 330px; box-sizing: border-box; border: 1px solid #3BE07A; border-radius: 10px; padding: 18px 20px; background: #161B20; display: flex; flex-direction: column; gap: 6px">
+        <div style="font-size: 22px; font-weight: 700">Pad box RELAY-6</div>
+        <div style="font-size: 14px; color: #9AA7B2; line-height: 1.45">6 MOSFET channels · per-pad Ω sense · 12 V LiFePO₄ · local safe/arm key · beacon · anemometer · siren</div>
+      </div>
+      <div style="width: 60px; height: 2px; background: #2A323A"></div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <div style="width: 46px; height: 46px; border: 1px solid #2A323A; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 15px">P1</div>
+        <div style="width: 46px; height: 46px; border: 1px solid #2A323A; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 15px">P2</div>
+        <div style="width: 46px; height: 46px; border: 1px solid #2A323A; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 15px">P3</div>
+        <div style="width: 46px; height: 46px; border: 1px solid #2A323A; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 15px">P4</div>
+        <div style="width: 46px; height: 46px; border: 1px solid #2A323A; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 15px">P5</div>
+        <div style="width: 46px; height: 46px; border: 1px solid #2A323A; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 15px">P6</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 16px">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; color: {{accent}}">05 · NEW IDEAS, BEYOND THE SOURCES</div>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+      <div style="background: #161B20; border: 1px solid #2A323A; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 17px; font-weight: 600">Five fire modes</div><div style="font-size: 14px; color: #9AA7B2; line-height: 1.45">Single · Select (any set) · Salvo (all six) · Ripple (staggered, 0.25–5 s) · Drag race (selected, together)</div></div>
+      <div style="background: #161B20; border: 1px solid #2A323A; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 17px; font-weight: 600">Igniter ohmmeter</div><div style="font-size: 14px; color: #9AA7B2; line-height: 1.45">Each pad reports igniter resistance, not just yes/no: an open, a short, or a clip that's half on.</div></div>
+      <div style="background: #161B20; border: 1px solid #2A323A; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 17px; font-weight: 600">Ignition timer</div><div style="font-size: 14px; color: #9AA7B2; line-height: 1.45">The pad box sees the igniter burn open and reports "P3 lit in 184 ms". It also catches a no-fire straight away.</div></div>
+      <div style="background: #161B20; border: 1px solid #2A323A; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 17px; font-weight: 600">Wind go/no-go</div><div style="font-size: 14px; color: #9AA7B2; line-height: 1.45">A cup anemometer on the pad box; gusts over 20 mph lock out FIRE and say why.</div></div>
+      <div style="background: #161B20; border: 1px solid #2A323A; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 17px; font-weight: 600">Talking countdown</div><div style="font-size: 14px; color: #9AA7B2; line-height: 1.45">Speaker calls "Pad three, armed … five, four …"; the Overkill controller left a speaker slot for this.</div></div>
+      <div style="background: #161B20; border: 1px solid #2A323A; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 17px; font-weight: 600">RSO tag arming</div><div style="font-size: 14px; color: #9AA7B2; line-height: 1.45">Key switch plus an NFC card. Only a tagged card can arm, and the log records who armed.</div></div>
+      <div style="background: #161B20; border: 1px solid #2A323A; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 17px; font-weight: 600">Flight log</div><div style="font-size: 14px; color: #9AA7B2; line-height: 1.45">Every shot logged: time, pad, motor, Ω, wind, GPS. To microSD, or as a QR code on the OLED.</div></div>
+      <div style="background: #161B20; border: 1px solid #2A323A; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px"><div style="font-size: 17px; font-weight: 600">Pad beacon</div><div style="font-size: 14px; color: #9AA7B2; line-height: 1.45">RGB mast light: green safe · amber armed · strobing red counting. Readable from the line at 50 m.</div></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#FF7A1A","options":["#FF7A1A","#E2492B","#46E0FF","#C6FF3D"]},"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#FF7A1A' };
+}
+}
+</script>
+</body>
+</html>

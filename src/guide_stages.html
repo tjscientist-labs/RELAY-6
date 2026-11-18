@@ -1,0 +1,114 @@
+<p>Thirteen stages. 0–6 are on the bench and prove the electronics; 7–8 put the pad box in its can; 9–11 build the three controllers
+(any order, any one first); 12 is the first field check. Section 7 (commissioning) follows.</p>
+
+<div class="stage"><h3>Stage 0 · Order and measure</h3>
+<ol>
+ <li>Order the pad box and core parts from section 5 and one controller's panel parts. Buy two Heltec V3 boards per pair plus one spare.</li>
+ <li>When the case arrives, measure its inside: length and width at the rim of the base, depth of base and lid, corner radius, and how far the gasket groove stands in. Enter them in <span class="mono">src/parts.py</span> and regenerate: every panel outline, hole and DXF is drawn from those numbers.</li>
+ <li>Measure every CHECK part (key switches, e-stop, arcade buttons, toggles, Powerpole bracket, OLED module) and correct its hole on the cut sheets.</li>
+</ol>
+<div class="gate"><b>Gate 0.</b> Every CHECK (red) on P-1 to P-9 confirmed or changed; the panel outline fits the case with 1 mm clearance all round.</div></div>
+
+<div class="stage"><h3>Stage 1 · Two radios talking</h3>
+<ol>
+ <li>Flash both Heltec boards with a RadioLib "ping-pong" test at 915 MHz (or your region), SF7/125 kHz, CRC on. Antennas fitted before any transmit.</li>
+ <li>Add the authentication layer: a 16-byte test key, AES-128-CMAC over header and payload, 8-byte tag, 32-bit counter. Log every rejected packet with its reason.</li>
+ <li>Tamper tests: flip one payload bit (must fail the tag), replay a captured packet (must fail the counter), use a different key (must fail the tag).</li>
+</ol>
+<div class="gate"><b>Gate 1.</b> 1000 packets each way across the room with none rejected; every tamper test rejected; a power-cycled unit resumes with a higher counter (counter kept in flash).</div></div>
+
+<div class="stage"><h3>Stage 2 · Controller core on the bench</h3>
+<ol>
+ <li>On a full-size proto board: Heltec V3 in sockets, 74AHCT125 level shifter, MCP23017 (or the ADS1115 for MONOLITH), headers for the OLED, PN532, MAX98357A and GPS. Wire per E-4.</li>
+ <li>Check the proposed GPIO map in section 11 against Heltec's V3 pinout before soldering; change the table, not the board, if it disagrees.</li>
+ <li>Power from the bench supply at 3.7 V, 1 A limit, through the boost converter. Bring up one module at a time: OLED test pattern, encoder counts, PN532 reads a card, a WAV clip plays, GPS gets a fix outdoors, an 8-LED test strip lights.</li>
+</ol>
+<div class="gate"><b>Gate 2.</b> Every module works together on the one board; current under 400 mA with the LEDs dim; the OLED draws the six screens from the concept sheet with test data.</div></div>
+
+<div class="stage"><h3>Stage 3 · Pad box logic and watchdog</h3>
+<ol>
+ <li>Second proto board: Heltec V3, buck converter, U2, U3, U4 and Q7 per E-2. Use a 12 V bench supply at 1 A limit in place of the battery. Fit K1 in its socket but connect nothing to 30, 87 or 87a yet.</li>
+ <li>Set U2's timing: start with 100 kΩ and 10 µF; toggle HEARTBEAT from a test sketch, then stop. Measure, with a scope or the ESP32's own timer, how long U2's Q stays high after the last edge. Adjust C until it is 0.8–1.2 s and record it in section 11.</li>
+ <li>Truth table: key OFF / ON × ARM_EN low / high × heartbeat running / stopped. K1 must pull in only for ON + high + running.</li>
+ <li>Crash test: with K1 pulled in, make the sketch hang in a loop. K1 must drop within the watchdog time.</li>
+</ol>
+<div class="gate"><b>Gate 3.</b> All eight rows of the truth table correct; K1 drops on a firmware hang; with S1 off K1 cannot pull in.</div></div>
+
+<div class="stage"><h3>Stage 4 · Six channels into dummy loads</h3>
+<ol>
+ <li>Build the six channels per E-3 on the power board: the six IRLB3034-type MOSFETs on a common aluminium bar (insulating pads), fuse holders, TVS diodes, gate drivers U5–U7. PAD+ and the return in 12 AWG; each channel in 14 AWG.</li>
+ <li>Wire K1: 87 to the fused battery feed, 87a to ground, 30 to the PAD+ bus. Check with the meter, power off, that 30 reads 0 Ω to ground.</li>
+ <li>Six 12 V 21 W lamps on the outputs, bench supply at 12 V, 10 A limit. Arm and fire each pad, then salvo. Each lamp lights for 1.0 s only.</li>
+ <li>With K1 at rest, command FIRE on every pad from the test sketch: nothing must light (the gate drivers have no supply).</li>
+</ol>
+<div class="gate"><b>Gate 4.</b> Every pad fires only when armed; no pad lights with K1 at rest whatever the firmware does; MOSFET bar warm at most after a six-lamp salvo.</div></div>
+
+<div class="stage"><h3>Stage 5 · Igniter meter calibration</h3>
+<ol>
+ <li>Fit the TEST rail (D0), the six 3.30 kΩ resistors, the input resistors and clamps, and the two ADS1115s.</li>
+ <li>Put 0.50 Ω, 1.00 Ω and 2.00 Ω (0.1 % or measured on a 4-wire meter) on each pad in turn. Record the readings; store a per-channel offset for lead and contact resistance in flash.</li>
+ <li>Open circuit reads OPEN; a short reads below 0.2 Ω.</li>
+ <li>Measure the actual test current with a meter in series: it should be close to 0.9 mA.</li>
+</ol>
+<div class="gate"><b>Gate 5.</b> All six pads read the reference resistors within ±0.05 Ω; OPEN and SHORT detected.</div></div>
+
+<div class="stage"><h3>Stage 6 · Real igniters, no motor</h3>
+<div class="warn"><b>Outdoors, no motor, igniters only.</b> Stand well back as for a launch. Confirm from the igniter's data sheet that the 0.9 mA test current is far below its no-fire current before connecting it. If it is not, reduce it (raise the 3.30 kΩ resistors) and repeat Stage 5.</div>
+<ol>
+ <li>Battery in place of the bench supply, F0 fitted. Igniters on all six pads.</li>
+ <li>Fire each mode from the controller. Check the FIRED report gives a time for each pad.</li>
+ <li>Fire a three-igniter cluster on one pad. Read the current from the INA228 log; it must stay under the 15 A pad fuse.</li>
+</ol>
+<div class="gate"><b>Gate 6.</b> Every igniter lit; every ignition time reported; no fuse blown; battery voltage recovers after a salvo; the INA228 log shows the salvo peak current, and the pad box stayed powered through it.</div></div>
+
+<div class="stage"><h3>Stage 7 · The pad box can</h3>
+<ol>
+ <li>Tape the 1:1 templates P-8 (front) and P-9 (lid) to the can and centre-punch: six Powerpole outputs and the key on the front, the mast socket, antenna bulkhead and anemometer post on the lid, charge port and main switch on the side.</li>
+ <li>Drill and punch, deburr, then paint the inside of every hole to stop rust. Fit grommets and the PG7 gland.</li>
+ <li>Fit an inner plate (6 mm plywood or HDPE) carrying the battery strap, the power board and the logic board. The battery sits low and is strapped; nothing rests on it.</li>
+</ol>
+{V3}
+{P8}
+<div class="gate"><b>Gate 7.</b> The lid closes over the wiring with the gasket seated; every hole is deburred and sealed; the board plate is fixed at four points.</div></div>
+
+<div class="stage"><h3>Stage 8 · Pad box assembly</h3>
+<ol>
+ <li>Move the boards into the can. Re-run Gates 3, 4 and 5 in the can.</li>
+ <li>Fit the beacon mast (two 12 in lengths of ½ in aluminium tube joined by a short internal coupler, plugged into the lid socket) and the anemometer. Check the WIND reading against a hand anemometer or a weather report.</li>
+ <li>Label every output 1–6, red +, black −, and the key positions SAFE / ARM.</li>
+</ol>
+<div class="gate"><b>Gate 8.</b> Gates 3–5 pass again with the lid closed; beacon visible from 50 m in daylight.</div></div>
+
+<div class="stage"><h3>Stage 9 · HALO</h3>
+<ol>
+ <li>Cut the HALO panel (P-1, 3 mm black acrylic), the lid insert (P-2) and the ring, flip cover and hinge blocks (P-3: 6 mm clear, 3 mm clear, 6 mm black). Sand the ring's bottom face so it diffuses.</li>
+ <li>Glue the WS2812 strip in a ring under the four arc slots, LEDs facing up; bond the clear ring to the four bridges on top with acrylic cement. Fit the six 30 mm buttons with a NeoPixel mini PCB in each, the 60 mm FIRE button, the cover microswitch, key switch, e-stop, encoder and NFC window.</li>
+ <li>Panel on four standoffs from the case wall cleats; core board under it. Lid: OLED in its bezel, speaker, antenna bulkhead in the case wall.</li>
+</ol>
+{V_HALO}
+{P1}
+<div class="gate"><b>Gate 9.</b> Ring lights evenly with no hot spots; FIRE does nothing with the cover closed; full Stage 4 lamp test from the HALO.</div></div>
+
+<div class="stage"><h3>Stage 10 · FLIGHTDECK</h3>
+<ol>
+ <li>Order the aluminium panel from P-4 (laser cut, powder coated) or cut 3 mm acrylic for a first version; the lid insert is P-5.</li>
+ <li>Fit the six covered toggles, the six NeoPixel Stick-8 status bars behind a frosted strip, the ARM and FIRE buttons as far apart as the panel allows (252 mm centres), the master key, e-stop and mode encoder.</li>
+ <li>ARM and FIRE are wired in series into the one FIRE input: either released, the input opens. Lid: OLED and the checklist card over an edge-lit acrylic sheet.</li>
+</ol>
+{V_FD}
+{P4}
+<div class="gate"><b>Gate 10.</b> Neither button alone starts a count; a lifted cover shows its pad in the selection; full lamp test.</div></div>
+
+<div class="stage"><h3>Stage 11 · MONOLITH</h3>
+<ol>
+ <li>Cut the panel from P-6 as two layers of 3 mm black acrylic and laminate them (or 6.9 mm acetal from a CNC service); lid insert P-7. Confirm the slide-pot lever width before cutting the slots.</li>
+ <li>Fit the six slide potentiometers under the slots with machined or printed lever caps; one WS2812 strip under each slot. "Committed" is the top 10 % of travel.</li>
+ <li>Fire core: the 30 mm illuminated button sits in the 6810 bearing's bore; a printed collar on the bearing carries a cam that closes the COVER microswitch at 90°, and a torsion spring returns it. Twin OLEDs in the lid share SPI with separate chip selects.</li>
+</ol>
+{V_MONO}
+{P6}
+<div class="gate"><b>Gate 11.</b> Collar returns to SAFE on its own from any angle; levers read cleanly end to end; full lamp test.</div></div>
+
+<div class="stage"><h3>Stage 12 · Field check</h3>
+<p>Run section 7 in full before the first motor.</p>
+<div class="gate"><b>Gate 12.</b> Every item in section 7 ticked and signed by a second person.</div></div>

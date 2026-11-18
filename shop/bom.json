@@ -1,0 +1,1576 @@
+{
+ "title": "RELAY-6 six-pad wireless launcher",
+ "subtitle": "Bill of materials: pad box, controller core, HALO / FLIGHTDECK / MONOLITH panels",
+ "revision": "A",
+ "date": "2026-11-18",
+ "source": "Build guide Rev A, sections 4–6; drawings E-1 to E-6, P-1 to P-9",
+ "intro": "Prices are what each supplier's page showed on 2026-11-18, one unit, before tax and shipping. 'est.' is an allowance, not a quote; '(listing)' was read from a search result. The core group is bought once per controller.",
+ "tags": {
+  "EOL": "The original part is no longer made: buy the current equivalent listed.",
+  "Same": "Standard part: any equivalent works.",
+  "Choice": "A builder's choice: the listed part is the one drawn.",
+  "Spec": "The spec matters: match it or recheck the drawing and hole size."
+ },
+ "groups": [
+  {
+   "name": "Controller core (one per controller)",
+   "items": [
+    {
+     "qty": "1",
+     "ref": "U1",
+     "item": "Heltec WiFi LoRa 32 V3, 915 MHz, no shell",
+     "spec": "ESP32-S3 + SX1262; LoRa on IPEX; 1S Li-ion charger on board",
+     "mpn": "ZC-153-2-915",
+     "alts": "LilyGO T3-S3 SX1262 915 MHz (H598) $17.12, lilygo.cc",
+     "buy": [
+      [
+       "Heltec",
+       "https://heltec.org/project/wifi-lora-32-v3/"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$17.90",
+     "price": "$17.90"
+    },
+    {
+     "qty": "1",
+     "ref": "DS1",
+     "item": "OLED 3.12″ 256×64, SSD1322, 4-wire SPI",
+     "spec": "ER-OLEDM032-1, choose colour (blue/white/yellow/green) and the 4-wire SPI header option (+$0.59)",
+     "mpn": "ER-OLEDM032-1",
+     "alts": "Newhaven NHD-3.12-25664UCY2 $38.17, Digi-Key",
+     "buy": [
+      [
+       "BuyDisplay",
+       "https://www.buydisplay.com/blue-3-2-inch-arduino-raspberry-pi-oled-display-module-256x64-spi"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$20.84 · Visual area 78.78 × 21.18; outline 100.50 × 33.50",
+     "price": "$20.84"
+    },
+    {
+     "qty": "1",
+     "ref": "U6",
+     "item": "GNSS breakout, u-blox MAX-M10S",
+     "spec": "UART/I²C; needs an active GPS antenna on its SMA",
+     "mpn": "SparkFun GPS-18037",
+     "alts": "SEQURE M10-18 mini GPS with patch antenna, $22.99 (listing), Amazon B0D7Q2ZS8Q",
+     "buy": [
+      [
+       "SparkFun",
+       "https://www.sparkfun.com/sparkfun-gnss-receiver-breakout-max-m10s-qwiic.html"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$45.95 · Optional: GPS only feeds the flight log · optional",
+     "price": "$45.95"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Active GPS antenna, SMA",
+     "spec": "for the MAX-M10S",
+     "mpn": "",
+     "alts": "",
+     "buy": [
+      [
+       "any"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$12.00 · est. — not priced · optional",
+     "price": "$12.00"
+    },
+    {
+     "qty": "1",
+     "ref": "U5",
+     "item": "NFC reader PN532",
+     "spec": "I²C; RSO card arming",
+     "mpn": "Elechouse PN532 V4",
+     "alts": "HiLetgo PN532 V3 $8.99 (listing), Amazon B01I1J17LC",
+     "buy": [
+      [
+       "Elechouse",
+       "https://www.elechouse.com/shop/"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$23.90 · Optional: RSO card arming · optional",
+     "price": "$23.90"
+    },
+    {
+     "qty": "10",
+     "ref": "",
+     "item": "NFC cards NTAG215",
+     "spec": "CR80 PVC",
+     "mpn": "GoToTags JKYLMEQ2VG",
+     "alts": "20-pack $7.99 (listing), Amazon B075CL5HGP",
+     "buy": [
+      [
+       "GoToTags",
+       "https://store.gototags.com/nfc-pvc-card-ntag215/"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$0.48 × 10 = $4.80 · Minimum order 10 · optional",
+     "price": "$0.48 × 10 = $4.80"
+    },
+    {
+     "qty": "1",
+     "ref": "U4",
+     "item": "I²S class-D amp MAX98357A",
+     "spec": "3 W mono",
+     "mpn": "Adafruit 3006",
+     "alts": "",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/3006"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$5.95",
+     "price": "$5.95"
+    },
+    {
+     "qty": "1",
+     "ref": "LS1",
+     "item": "Speaker 40 mm 4 Ω 3 W",
+     "spec": "2-pack (one spare)",
+     "mpn": "Gikfun B01LN8ONG4",
+     "alts": "Adafruit 3968 (out of stock)",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B01LN8ONG4"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$9.28",
+     "price": "$9.28"
+    },
+    {
+     "qty": "1",
+     "ref": "ENC",
+     "item": "Rotary encoder with push switch",
+     "spec": "24 PPR, detent, 6 mm D shaft, 20 mm",
+     "mpn": "Bourns PEC11R-4220F-S0024",
+     "alts": "PEC11R-4215F-S0024 (15 mm shaft) $2.95",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=PEC11R-4220F-S0024"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$2.69",
+     "price": "$2.69"
+    },
+    {
+     "qty": "1",
+     "ref": "ENC",
+     "item": "Knob, knurled aluminium, black",
+     "spec": "23.5 mm × 15.9, 6 mm bore",
+     "mpn": "Kilo OEJNI-90-4-7",
+     "alts": "Adafruit 5527 (20 mm) $2.95",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=OEJNI-90-4-7"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$12.93",
+     "price": "$12.93"
+    },
+    {
+     "qty": "1",
+     "ref": "S1",
+     "item": "Key switch, 2-position",
+     "spec": "19.30 mm cutout; key removable in one position (confirm it is OFF on the data sheet)",
+     "mpn": "C&K Y101132C203NQ",
+     "alts": "Schneider XB5AG21 22 mm, $90.41",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=Y101132C203NQ"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$25.16 · Spare key C&K 115140126, $4.32",
+     "price": "$25.16"
+    },
+    {
+     "qty": "1",
+     "ref": "S2",
+     "item": "E-stop, 22 mm mushroom, 1 NC",
+     "spec": "push to latch, twist to release",
+     "mpn": "APIELE XB2-01ZS style",
+     "alts": "IDEC XW1E-BV401MFR $49.17 (27-week lead)",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B079FKJG26"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$9.99",
+     "price": "$9.99"
+    },
+    {
+     "qty": "2",
+     "ref": "BT1",
+     "item": "Li-ion cell 18650, Molicel P28A",
+     "spec": "2800 mAh, 35 A",
+     "mpn": "Molicel P28A",
+     "alts": "IMR Batteries P28A $5.99",
+     "buy": [
+      [
+       "18650BatteryStore",
+       "https://www.18650batterystore.com/products/molicel-p28a"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$5.99 × 2 = $11.98",
+     "price": "$5.99 × 2 = $11.98"
+    },
+    {
+     "qty": "2",
+     "ref": "BT1",
+     "item": "18650 holder, PCB",
+     "spec": "one cell each; wire the two in parallel (1S2P)",
+     "mpn": "Keystone 1043P",
+     "alts": "",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=1043P"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$3.37 × 2 = $6.74",
+     "price": "$3.37 × 2 = $6.74"
+    },
+    {
+     "qty": "1",
+     "ref": "U7",
+     "item": "USB-C Li-ion charger, bq24074",
+     "spec": "1.0 A charge as shipped; load sharing",
+     "mpn": "Adafruit 4755",
+     "alts": "",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/4755"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$14.95",
+     "price": "$14.95"
+    },
+    {
+     "qty": "1",
+     "ref": "U8",
+     "item": "5 V step-up regulator",
+     "spec": "1.3–5 V in, 5 V out",
+     "mpn": "Pololu U3V40F5 (#4012)",
+     "alts": "Pololu S13V20F5 $17.95",
+     "buy": [
+      [
+       "Pololu",
+       "https://www.pololu.com/product/4012"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$9.95",
+     "price": "$9.95"
+    },
+    {
+     "qty": "1",
+     "ref": "ANT",
+     "item": "Antenna 915 MHz tilt whip, SMA",
+     "spec": "3 dBi, 903–928 MHz",
+     "mpn": "Abracon AEACAC195013-S915",
+     "alts": "TE Linx ANT-916-CW-HW-SMA $11.20",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=AEACAC195013-S915"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$14.72",
+     "price": "$14.72"
+    },
+    {
+     "qty": "1",
+     "ref": "ANT",
+     "item": "u.FL to SMA bulkhead cable",
+     "spec": "15 cm RG178",
+     "mpn": "Adafruit 851",
+     "alts": "",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/851"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$3.95 · Check the SMA gender matches the antenna",
+     "price": "$3.95"
+    },
+    {
+     "qty": "1",
+     "ref": "J1",
+     "item": "USB-C round panel-mount extension",
+     "spec": "fits 12–18 mm hole",
+     "mpn": "Adafruit 6069",
+     "alts": "Adafruit 4218 (21.5–27 mm hole) $9.95",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/6069"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$4.50",
+     "price": "$4.50"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Perma-Proto full-size board",
+     "spec": "157 × 51 mm",
+     "mpn": "Adafruit 1606",
+     "alts": "",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/1606"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$10.95",
+     "price": "$10.95"
+    },
+    {
+     "qty": "1",
+     "ref": "U9",
+     "item": "Level shifter 74AHCT125",
+     "spec": "3.3 V → 5 V for the WS2812 data line",
+     "mpn": "Adafruit 1787",
+     "alts": "SN74AHCT125N, any distributor",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/1787"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$1.50 · est. — price not confirmed",
+     "price": "$1.50"
+    },
+    {
+     "qty": "1",
+     "ref": "U10",
+     "item": "I/O expander MCP23017",
+     "spec": "I²C: pad keys/toggles, MODE, encoder push",
+     "mpn": "MCP23017-E/SP",
+     "alts": "",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=MCP23017-E/SP"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$1.60 · est. — price not confirmed",
+     "price": "$1.60"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Wire, headers, standoffs, 1000 µF, resistors",
+     "spec": "allowance",
+     "mpn": "",
+     "alts": "",
+     "buy": [
+      [
+       "any"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$15.00 · est.",
+     "price": "$15.00"
+    }
+   ],
+   "note": "Subtotal ≈ $287 (of which optional $87)"
+  },
+  {
+   "name": "HALO panel parts",
+   "items": [
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Case, Apache 3800 (black)",
+     "spec": "inside 14-7/8 × 10-5/8 × 6-1/8 in",
+     "mpn": "Harbor Freight 63927",
+     "alts": "Pelican 1450 $169.95",
+     "buy": [
+      [
+       "Harbor Freight",
+       "https://www.harborfreight.com/3800-weatherproof-protective-case-large-orange-56766.html"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$39.99 · Measure inside before cutting (Stage 0)",
+     "price": "$39.99"
+    },
+    {
+     "qty": "6",
+     "ref": "PB1–PB6",
+     "item": "Arcade button 30 mm, translucent clear",
+     "spec": "30 mm hole",
+     "mpn": "Adafruit 3491",
+     "alts": "",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/3491"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$2.50 × 6 = $15.00",
+     "price": "$2.50 × 6 = $15.00"
+    },
+    {
+     "qty": "2",
+     "ref": "PB1–PB6",
+     "item": "NeoPixel mini button PCB, pack of 5",
+     "spec": "one inside each pad key",
+     "mpn": "Adafruit 1612",
+     "alts": "",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/1612"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$4.95 × 2 = $9.90",
+     "price": "$4.95 × 2 = $9.90"
+    },
+    {
+     "qty": "1",
+     "ref": "PB7",
+     "item": "Arcade button 60 mm, red, LED",
+     "spec": "FIRE; hole size from the maker's drawing (CHECK)",
+     "mpn": "Adafruit 1190",
+     "alts": "Adafruit 1185 (100 mm) $9.95",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/1190"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$5.95",
+     "price": "$5.95"
+    },
+    {
+     "qty": "1",
+     "ref": "SW1",
+     "item": "Microswitch, lever",
+     "spec": "cover-open sense",
+     "mpn": "Omron D2F-L",
+     "alts": "D2F-FL $2.15",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=D2F-L"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$2.55",
+     "price": "$2.55"
+    },
+    {
+     "qty": "1",
+     "ref": "P-3",
+     "item": "Clear cast acrylic 1/4 in, 12 × 12 in, 2-pack",
+     "spec": "halo ring (6 mm)",
+     "mpn": "Amazon B0H33BKNLR",
+     "alts": "",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B0H33BKNLR"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$14.99",
+     "price": "$14.99"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "WS2812B strip 60/m, 1 m",
+     "spec": "≈46 LEDs for the ring",
+     "mpn": "BTF-LIGHTING B01CDTE9UC",
+     "alts": "Adafruit 2508 (out of stock)",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B01CDTE9UC"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$8.99",
+     "price": "$8.99"
+    },
+    {
+     "qty": "1",
+     "ref": "P-1–P-3",
+     "item": "Laser-cut panels (P-1, P-2, P-3 cover and blocks)",
+     "spec": "3 mm black + 3 mm clear cast acrylic",
+     "mpn": "SendCutSend",
+     "alts": "Any laser service or a local makerspace",
+     "buy": [
+      [
+       "SendCutSend",
+       "https://sendcutsend.com/materials/"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$45.00 · est. — upload the DXFs for a quote",
+     "price": "$45.00"
+    }
+   ],
+   "note": "Subtotal ≈ $142"
+  },
+  {
+   "name": "FLIGHTDECK panel parts",
+   "items": [
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Case, Apache 3800 (orange)",
+     "spec": "inside 14-7/8 × 10-5/8 × 6-1/8 in",
+     "mpn": "Harbor Freight 56766",
+     "alts": "Pelican 1450 $169.95",
+     "buy": [
+      [
+       "Harbor Freight",
+       "https://www.harborfreight.com/3800-weatherproof-protective-case-large-orange-56766.html"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$39.99",
+     "price": "$39.99"
+    },
+    {
+     "qty": "6",
+     "ref": "T1–T6",
+     "item": "Toggle switch SPST, IP56",
+     "spec": "12.2 mm hole, 15/32-32 bushing",
+     "mpn": "CW Industries GTS447A101HR",
+     "alts": "SparkFun COM-11310 illuminated toggle + cover $4.75",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=GTS447A101HR"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$6.87 × 6 = $41.22 · $5.93 each at 10",
+     "price": "$6.87 × 6 = $41.22"
+    },
+    {
+     "qty": "6",
+     "ref": "T1–T6",
+     "item": "Safety flip cover, red",
+     "spec": "fits GTS series",
+     "mpn": "CW Industries GT-4R",
+     "alts": "",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=GT-4R"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$5.72 × 6 = $34.32 · $5.18 each at 10",
+     "price": "$5.72 × 6 = $34.32"
+    },
+    {
+     "qty": "1",
+     "ref": "B1–B6",
+     "item": "WS2812B strip 60/m, 1 m",
+     "spec": "cut six 8-LED status bars",
+     "mpn": "BTF-LIGHTING B01CDTE9UC",
+     "alts": "Adafruit NeoPixel Stick 1426 $5.95 each (out of stock)",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B01CDTE9UC"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$8.99",
+     "price": "$8.99"
+    },
+    {
+     "qty": "1",
+     "ref": "PB1",
+     "item": "Arcade button 60 mm, green, LED",
+     "spec": "ARM",
+     "mpn": "Adafruit 1193",
+     "alts": "",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/1193"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$5.95 · hole: CHECK",
+     "price": "$5.95"
+    },
+    {
+     "qty": "1",
+     "ref": "PB2",
+     "item": "Arcade button 60 mm, red, LED",
+     "spec": "FIRE",
+     "mpn": "Adafruit 1190",
+     "alts": "",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/1190"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$5.95 · hole: CHECK",
+     "price": "$5.95"
+    },
+    {
+     "qty": "1",
+     "ref": "P-4",
+     "item": "Aluminium panel, laser cut + powder coat",
+     "spec": "3.18 mm 5052-H32 (P-4)",
+     "mpn": "SendCutSend",
+     "alts": "3 mm black acrylic (as HALO) about $25",
+     "buy": [
+      [
+       "SendCutSend",
+       "https://sendcutsend.com/materials/"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$70.00 · est. — quote needed",
+     "price": "$70.00"
+    },
+    {
+     "qty": "1",
+     "ref": "P-5",
+     "item": "Lid insert + checklist window",
+     "spec": "3 mm black + 3 mm clear acrylic (P-5)",
+     "mpn": "SendCutSend",
+     "alts": "",
+     "buy": [
+      [
+       "SendCutSend",
+       "https://sendcutsend.com/materials/"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$25.00 · est.",
+     "price": "$25.00"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Hazard-stripe vinyl tape, 2 in",
+     "spec": "fire-zone border",
+     "mpn": "",
+     "alts": "",
+     "buy": [
+      [
+       "any"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$8.00 · est.",
+     "price": "$8.00"
+    }
+   ],
+   "note": "Subtotal ≈ $239"
+  },
+  {
+   "name": "MONOLITH panel parts",
+   "items": [
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Case, Apache 3800 (black)",
+     "spec": "inside 14-7/8 × 10-5/8 × 6-1/8 in",
+     "mpn": "Harbor Freight 63927",
+     "alts": "",
+     "buy": [
+      [
+       "Harbor Freight",
+       "https://www.harborfreight.com/3800-weatherproof-protective-case-large-orange-56766.html"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$39.99",
+     "price": "$39.99"
+    },
+    {
+     "qty": "6",
+     "ref": "RV1–RV6",
+     "item": "Slide potentiometer 60 mm, 10 kΩ linear",
+     "spec": "body 75 × 9 × 6.5",
+     "mpn": "Bourns PTA6043-2015DPB103",
+     "alts": "Same Sky PTNS2-6015M-B10 $2.02",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=PTA6043-2015DPB103"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$2.23 × 6 = $13.38 · $1.86 each at 10",
+     "price": "$2.23 × 6 = $13.38"
+    },
+    {
+     "qty": "1",
+     "ref": "RV1–RV6",
+     "item": "Fader caps, 10-pack",
+     "spec": "plastic; machine aluminium caps later",
+     "mpn": "uxcell B07W78R9M3",
+     "alts": "",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B07W78R9M3"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$6.49 · (listing) — check the lever size first",
+     "price": "$6.49"
+    },
+    {
+     "qty": "2",
+     "ref": "U10",
+     "item": "ADS1115 16-bit ADC breakout",
+     "spec": "reads the six levers (4 + 2)",
+     "mpn": "Adafruit 1085",
+     "alts": "",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/1085"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$14.95 × 2 = $29.90",
+     "price": "$14.95 × 2 = $29.90"
+    },
+    {
+     "qty": "1",
+     "ref": "PB1",
+     "item": "Pushbutton 30 mm stainless, blue LED, IP67",
+     "spec": "fire core; LED is 12 V (dim at 5 V, or add a small boost)",
+     "mpn": "Amazon B095WRSWG8",
+     "alts": "Amazon B095PFQG77 $23.99",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B095WRSWG8"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$21.99",
+     "price": "$21.99"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Bearing 6810-2RS, 50 × 65 × 7",
+     "spec": "twist collar",
+     "mpn": "uxcell B082PXZLJT (2-pack)",
+     "alts": "VXB 6810-2RS $24.99",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B082PXZLJT"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$9.79 · (listing)",
+     "price": "$9.79"
+    },
+    {
+     "qty": "1",
+     "ref": "DS2",
+     "item": "Second OLED (same as DS1)",
+     "spec": "twin strip",
+     "mpn": "ER-OLEDM032-1",
+     "alts": "",
+     "buy": [
+      [
+       "BuyDisplay",
+       "https://www.buydisplay.com/blue-3-2-inch-arduino-raspberry-pi-oled-display-module-256x64-spi"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$20.84",
+     "price": "$20.84"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "WS2812B strip 60/m, 1 m",
+     "spec": "lever slots + columns",
+     "mpn": "BTF-LIGHTING B01CDTE9UC",
+     "alts": "",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B01CDTE9UC"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$8.99",
+     "price": "$8.99"
+    },
+    {
+     "qty": "1",
+     "ref": "P-6, P-7",
+     "item": "Panels: 2 × 3 mm black acrylic (laminated), lid insert",
+     "spec": "P-6, P-7",
+     "mpn": "SendCutSend",
+     "alts": "6.9 mm Delrin, CNC routed (colour not confirmed)",
+     "buy": [
+      [
+       "SendCutSend",
+       "https://sendcutsend.com/materials/"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$55.00 · est.",
+     "price": "$55.00"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Printed collar, cam and housing",
+     "spec": "PETG, 3D printed",
+     "mpn": "",
+     "alts": "",
+     "buy": [
+      [
+       "any"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$5.00 · est.",
+     "price": "$5.00"
+    }
+   ],
+   "note": "Subtotal ≈ $211"
+  },
+  {
+   "name": "RELAY-6 pad box",
+   "items": [
+    {
+     "qty": "1",
+     "ref": "U1",
+     "item": "Heltec WiFi LoRa 32 V3, 915 MHz, no shell",
+     "spec": "ESP32-S3 + SX1262",
+     "mpn": "ZC-153-2-915",
+     "alts": "LilyGO T3-S3 V1.3 SX1262 $15.31 (China) / $19.81 (US)",
+     "buy": [
+      [
+       "Heltec",
+       "https://heltec.org/project/wifi-lora-32-v3/"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$17.90",
+     "price": "$17.90"
+    },
+    {
+     "qty": "10",
+     "ref": "Q1–Q8",
+     "item": "N-MOSFET 40 V, IRLB3034 type, TO-220",
+     "spec": "1.7 mΩ max at 10 V (IRLB3034 data); Q1–Q8 + 2 spares",
+     "mpn": "UMW UMWIRLB3034",
+     "alts": "Infineon IPP015N04NF2SAKMA1 $3.40 (not logic-level; fine with the 12 V gate drive). Infineon IRLB3034PBF is obsolete",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=UMWIRLB3034"
+      ]
+     ],
+     "tag": "EOL",
+     "note": "$1.68 × 10 = $16.80 · $1.68 each at 10 · the Infineon original is no longer made",
+     "price": "$1.68 × 10 = $16.80"
+    },
+    {
+     "qty": "4",
+     "ref": "U4–U7",
+     "item": "Gate driver, dual, non-inverting",
+     "spec": "TC4427A, DIP-8; three for the pads, one for K1",
+     "mpn": "TC4427AEPA",
+     "alts": "TC4427CPA $1.78",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=TC4427AEPA"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$1.78 × 4 = $7.12",
+     "price": "$1.78 × 4 = $7.12"
+    },
+    {
+     "qty": "1",
+     "ref": "K1",
+     "item": "Relay 12 V SPDT, 5-pin, with sockets, 5-pack",
+     "spec": "NO 40 A / NC 30 A at 14 V; 30 / 87 / 87a",
+     "mpn": "Nilight 50003R",
+     "alts": "Bosch 0 332 209 150 is only 20/30 A",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B0748F1JK4"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$13.50 · 4 spares in the pack",
+     "price": "$13.50"
+    },
+    {
+     "qty": "2",
+     "ref": "ADC1, ADC2",
+     "item": "ADC 16-bit, 4-channel, ADS1115",
+     "spec": "TEST + six PAD−n + WIND",
+     "mpn": "Adafruit 1085",
+     "alts": "",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/1085"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$14.95 × 2 = $29.90",
+     "price": "$14.95 × 2 = $29.90"
+    },
+    {
+     "qty": "1",
+     "ref": "U8",
+     "item": "Current/voltage monitor INA228 breakout",
+     "spec": "reads RS1 and the battery voltage",
+     "mpn": "Adafruit INA228",
+     "alts": "INA226 breakout",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/search?q=INA228"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$15.00 · est. — price not confirmed",
+     "price": "$15.00"
+    },
+    {
+     "qty": "1",
+     "ref": "RS1",
+     "item": "Shunt 50 A / 75 mV",
+     "spec": "Kelvin terminals",
+     "mpn": "",
+     "alts": "",
+     "buy": [
+      [
+       "any"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$10.00 · est. — not priced",
+     "price": "$10.00"
+    },
+    {
+     "qty": "1",
+     "ref": "U2",
+     "item": "Retriggerable monostable, CD74HC123E",
+     "spec": "DIP-16; one half used as the watchdog",
+     "mpn": "CD74HC123E",
+     "alts": "SN74LVC1G123DCUR (VSSOP-8, needs an adapter) $1.67",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=CD74HC123E"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$0.99",
+     "price": "$0.99"
+    },
+    {
+     "qty": "1",
+     "ref": "U3",
+     "item": "Quad AND gate, 74HC08",
+     "spec": "DIP-14; one gate used",
+     "mpn": "SN74HC08N",
+     "alts": "",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=SN74HC08N"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$0.60 · est. — price not confirmed",
+     "price": "$0.60"
+    },
+    {
+     "qty": "1",
+     "ref": "U9",
+     "item": "Level shifter 74AHCT125",
+     "spec": "beacon data",
+     "mpn": "SN74AHCT125N",
+     "alts": "Adafruit 1787",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=SN74AHCT125N"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$0.70 · est. — price not confirmed",
+     "price": "$0.70"
+    },
+    {
+     "qty": "1",
+     "ref": "F1–F6",
+     "item": "Fuse block, 6 circuits + negative bus",
+     "spec": "ATO/ATC, 30 A per circuit, 100 A block",
+     "mpn": "Blue Sea Systems 5025",
+     "alts": "12-circuit version $45.03",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B000THQ0CQ"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$35.10",
+     "price": "$35.10"
+    },
+    {
+     "qty": "10",
+     "ref": "F1–F6",
+     "item": "Fuse ATO 15 A",
+     "spec": "32 V DC; six fitted, four spares",
+     "mpn": "Littelfuse 0287015.PXCN",
+     "alts": "",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=0287015.PXCN"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$0.33 × 10 = $3.30 · $0.33 each at 10",
+     "price": "$0.33 × 10 = $3.30"
+    },
+    {
+     "qty": "1",
+     "ref": "F0",
+     "item": "Inline ATC fuse holder 10 AWG, 4-pack with 40 A fuses",
+     "spec": "main fuse F0",
+     "mpn": "Amazon B08BWRSPY1",
+     "alts": "Littelfuse FHAC0001ZXJ is 20 A max: not for F0",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B08BWRSPY1"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$9.99",
+     "price": "$9.99"
+    },
+    {
+     "qty": "1",
+     "ref": "BT1",
+     "item": "Battery 12 V sealed lead-acid 7.2 Ah",
+     "spec": "≈151 × 65 × 94 mm, F2 terminals; high pulse current",
+     "mpn": "12 V 7.2 Ah SLA (any make)",
+     "alts": "LiFePO₄ only with a ≥ 40 A pulse BMS. ExpertPower 10 Ah LiFePO₄ ($69.99) has a 10 A / 15 A-for-10 s BMS: too small for salvos",
+     "buy": [
+      [
+       "any"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$25.00 · est. — price not confirmed",
+     "price": "$25.00"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Charger, 12 V lead-acid smart charger 1–2 A",
+     "spec": "with S1 off",
+     "mpn": "",
+     "alts": "Powerwerx CRG-14.6-4A $24.99 if you fit LiFePO₄",
+     "buy": [
+      [
+       "any"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$30.00 · est. — price not confirmed",
+     "price": "$30.00"
+    },
+    {
+     "qty": "1",
+     "ref": "U1 supply",
+     "item": "Buck regulator 5 V 1 A",
+     "spec": "5.1–36 V in",
+     "mpn": "Pololu D24V10F5 (#2831)",
+     "alts": "Pololu D36V28F5 $23.95",
+     "buy": [
+      [
+       "Pololu",
+       "https://www.pololu.com/product/2831"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$13.95",
+     "price": "$13.95"
+    },
+    {
+     "qty": "1",
+     "ref": "J1–J6, charge",
+     "item": "Anderson Powerpole 30 A, 25 sets",
+     "spec": "one set = one red + one black housing; 7 pairs need 14 sets",
+     "mpn": "Powerwerx PP30-25",
+     "alts": "10 sets $12.99",
+     "buy": [
+      [
+       "Powerwerx",
+       "https://powerwerx.com/anderson-powerpole-connectors-30amp-unassembled"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$27.99",
+     "price": "$27.99"
+    },
+    {
+     "qty": "6",
+     "ref": "J1–J6",
+     "item": "Powerpole panel clamp pair",
+     "spec": "fixes each pair to the front face (P-8)",
+     "mpn": "Powerwerx 1462G1",
+     "alts": "PanelPole2 housing $19.99",
+     "buy": [
+      [
+       "Powerwerx",
+       "https://powerwerx.com/search?q=powerpole%20distribution"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$4.40 × 6 = $26.40 · (listing) — CHECK the cut-out against P-8",
+     "price": "$4.40 × 6 = $26.40"
+    },
+    {
+     "qty": "1",
+     "ref": "leads",
+     "item": "Alligator clips, Mueller BU-60, 50 pcs",
+     "spec": "12 used",
+     "mpn": "Mueller BU-60",
+     "alts": "BU-60C, 10 pcs $23.62",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B00LPPG4ZY"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$32.30",
+     "price": "$32.30"
+    },
+    {
+     "qty": "1",
+     "ref": "leads",
+     "item": "Zip cord 16 AWG red/black, 50 ft",
+     "spec": "bare copper (not CCA)",
+     "mpn": "Powerwerx Wire-RB-16-50",
+     "alts": "Amazon 16 AWG $11.99 is CCA: avoid",
+     "buy": [
+      [
+       "Powerwerx",
+       "https://powerwerx.com/red-black-zip-cord-16-awg-50-ft"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$21.89",
+     "price": "$21.89"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Ammo can .50 cal, steel, gasketed",
+     "spec": "inside ≈ 11 × 5.5 × 7 in (typical M2A1; measure)",
+     "mpn": "Fortress (Amazon B01LYVW7DQ)",
+     "alts": "HARDROCK gasketed can $35.99; Apache 2800 $29.99",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B01LYVW7DQ"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$29.69",
+     "price": "$29.69"
+    },
+    {
+     "qty": "1",
+     "ref": "S2",
+     "item": "Key switch, key removable in one position",
+     "spec": "19.30 mm; 4 A at 28 V DC (coil current ≈ 0.15 A)",
+     "mpn": "C&K Y101132C203NQ",
+     "alts": "C&K YM06132C205NQ (SPST) $33.68; E-Switch KO106A102 releases in all positions: not suitable",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=Y101132C203NQ"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$25.16 · confirm the key comes out in OFF",
+     "price": "$25.16"
+    },
+    {
+     "qty": "1",
+     "ref": "WIND",
+     "item": "Anemometer, analog 0.4–2.0 V",
+     "spec": "7–24 V supply; 0.5–50 m/s",
+     "mpn": "Adafruit 1733",
+     "alts": "",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/1733"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$44.95",
+     "price": "$44.95"
+    },
+    {
+     "qty": "1",
+     "ref": "SIREN",
+     "item": "Siren, Floyd Bell Turbo, panel mount",
+     "spec": "5–30 V; 85–103 dB(A)",
+     "mpn": "Blue Sea 1070",
+     "alts": "Mallory SC628ND $38.63 (75 dB at 6 V)",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B011N48IIW"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$26.96",
+     "price": "$26.96"
+    },
+    {
+     "qty": "1",
+     "ref": "BEACON",
+     "item": "NeoPixel ring 16",
+     "spec": "44.5 mm OD; beacon",
+     "mpn": "Adafruit 1463",
+     "alts": "Ring 24 (1586) $16.95",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/1463"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$9.95",
+     "price": "$9.95"
+    },
+    {
+     "qty": "1",
+     "ref": "BEACON",
+     "item": "Clear acrylic dome 80 mm with flange",
+     "spec": "beacon diffuser (sand it frosted)",
+     "mpn": "Trolleyshop B07L6FBMXF",
+     "alts": "",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B07L6FBMXF"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$12.99",
+     "price": "$12.99"
+    },
+    {
+     "qty": "1",
+     "ref": "ANT",
+     "item": "Antenna 915 MHz 5 dBi SMA-M, 2-pack",
+     "spec": "folding, 19.5 cm",
+     "mpn": "Amazon B0D47HVCK7",
+     "alts": "Abracon AEACAC195013-S915 $14.72",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B0D47HVCK7"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$11.99",
+     "price": "$11.99"
+    },
+    {
+     "qty": "1",
+     "ref": "ANT",
+     "item": "u.FL to SMA-F pigtail 15 cm, 5 pcs",
+     "spec": "to the lid bulkhead",
+     "mpn": "HiLetgo B01HXU1PKS",
+     "alts": "",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B01HXU1PKS"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$7.79 · check it has a bulkhead nut",
+     "price": "$7.79"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Cable glands PG7, 20-pack",
+     "spec": "leads, anemometer cable",
+     "mpn": "Amazon B0CTCHB115",
+     "alts": "",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B0CTCHB115"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$8.88",
+     "price": "$8.88"
+    },
+    {
+     "qty": "10",
+     "ref": "Rt1–Rt6",
+     "item": "Resistor 3.30 kΩ 0.1 % 1/4 W",
+     "spec": "Rt1–Rt6 + spares",
+     "mpn": "Yageo MFP-25BRD52-3K3",
+     "alts": "",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=MFP-25BRD52-3K3"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$0.43 × 10 = $4.30 · $0.43 each at 10",
+     "price": "$0.43 × 10 = $4.30"
+    },
+    {
+     "qty": "2",
+     "ref": "D0",
+     "item": "Schottky 1N5817",
+     "spec": "D0 (TEST rail) + spare",
+     "mpn": "onsemi 1N5817G",
+     "alts": "MCC 1N5817-TP $0.29",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=1N5817G"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$0.67 × 2 = $1.34",
+     "price": "$0.67 × 2 = $1.34"
+    },
+    {
+     "qty": "10",
+     "ref": "TVS1–TVS6",
+     "item": "TVS SMBJ15A",
+     "spec": "pad lines; 15 V working (above 14.4 V charge)",
+     "mpn": "Littelfuse SMBJ15A",
+     "alts": "1.5KE18A (through-hole) $1.06",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=SMBJ15A"
+      ]
+     ],
+     "tag": "Spec",
+     "note": "$0.30 × 10 = $3.00 · 1.5KE15A (12.8 V working) would conduct while charging",
+     "price": "$0.30 × 10 = $3.00"
+    },
+    {
+     "qty": "6",
+     "ref": "D1–D6",
+     "item": "Dual Schottky BAT54S, SOT-23",
+     "spec": "ADS input clamps, one per pad",
+     "mpn": "BAT54S",
+     "alts": "",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=BAT54S"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$0.10 × 6 = $0.60 · est. — price not confirmed",
+     "price": "$0.10 × 6 = $0.60"
+    },
+    {
+     "qty": "1",
+     "ref": "TVS0",
+     "item": "TVS 1.5KE18A",
+     "spec": "+12 SW input",
+     "mpn": "Littelfuse 1.5KE18A",
+     "alts": "",
+     "buy": [
+      [
+       "Digi-Key",
+       "https://www.digikey.com/en/products/result?keywords=1.5KE18A"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$1.06",
+     "price": "$1.06"
+    },
+    {
+     "qty": "1",
+     "ref": "MAST",
+     "item": "Aluminium tube ½ in OD × 24 in, 4 pcs",
+     "spec": "beacon mast (two lengths + coupler)",
+     "mpn": "Amazon B0GF6CG843",
+     "alts": "",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B0GF6CG843"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$29.99",
+     "price": "$29.99"
+    },
+    {
+     "qty": "1",
+     "ref": "S1",
+     "item": "Main switch, waterproof toggle 30 A 12 V",
+     "spec": "with boot",
+     "mpn": "Amazon B0CPLLRR4Q",
+     "alts": "",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B0CPLLRR4Q"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$9.99",
+     "price": "$9.99"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "LED voltmeter 0.28 in, 8 pcs",
+     "spec": "battery gauge on the end panel",
+     "mpn": "Amazon B08RYPRZFF",
+     "alts": "",
+     "buy": [
+      [
+       "Amazon",
+       "https://www.amazon.com/dp/B08RYPRZFF"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$9.99 · optional",
+     "price": "$9.99"
+    },
+    {
+     "qty": "2",
+     "ref": "",
+     "item": "Perma-Proto full-size board",
+     "spec": "logic board and power-board carrier",
+     "mpn": "Adafruit 1606",
+     "alts": "",
+     "buy": [
+      [
+       "Adafruit",
+       "https://www.adafruit.com/product/1606"
+      ]
+     ],
+     "tag": "Same",
+     "note": "$10.95 × 2 = $21.90",
+     "price": "$10.95 × 2 = $21.90"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "Aluminium bar 25 × 6 × 200 + insulating pads",
+     "spec": "MOSFET heat spreader",
+     "mpn": "",
+     "alts": "",
+     "buy": [
+      [
+       "any"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$8.00 · est.",
+     "price": "$8.00"
+    },
+    {
+     "qty": "1",
+     "ref": "",
+     "item": "12 / 14 AWG wire, ring lugs, heat-shrink, passives, LEDs",
+     "spec": "allowance",
+     "mpn": "",
+     "alts": "",
+     "buy": [
+      [
+       "any"
+      ]
+     ],
+     "tag": "Choice",
+     "note": "$25.00 · est.",
+     "price": "$25.00"
+    }
+   ],
+   "note": "Subtotal ≈ $632 (of which optional $10)"
+  }
+ ],
+ "totals": {
+  "Pad box (RELAY-6)": "$632",
+  "HALO controller (core + panel)": "$430",
+  "FLIGHTDECK controller": "$527",
+  "MONOLITH controller": "$499",
+  "Pad box + HALO": "$1,062",
+  "Pad box + all three controllers": "$2,087",
+  "Saving per controller without GPS and NFC (optional rows)": "$87"
+ }
+}

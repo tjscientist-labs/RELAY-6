@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Plan and cost</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#46E0FF}a:hover{color:#9BEFFF}
+</style>
+</helmet>
+<div style="width: 1200px; height: 1100px; box-sizing: border-box; padding: 40px 56px; background: #0E1114; color: #E8EEF2; font-family: 'Chakra Petch', sans-serif; display: flex; flex-direction: column; gap: 28px">
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #FF7A1A">REV 0.2 · DECISIONS 2026-11-18</div>
+    <h2 style="margin: 0; font-size: 44px; font-weight: 700">All three, one pad box, open to build</h2>
+    <div style="font-size: 17px; color: #C9D3DB; line-height: 1.5">HALO, FLIGHTDECK and MONOLITH share one electronics core and one RELAY-6 pad box, and any of them pairs with it. The radio is licence-free LoRa, so anyone can build one, and every packet is checked and signed. The pad box is rated for high-power rockets and clusters.</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; color: #46E0FF">LINK PACKET · EVERY MESSAGE</div>
+    <div style="display: flex; font-family: 'JetBrains Mono', monospace; font-size: 13px; text-align: center">
+      <div style="flex: 2 1 0; border: 1px solid #2A323A; padding: 10px 4px; background: #161B20">SYSTEM ID<br><span style="color: #9AA7B2">4 B</span></div>
+      <div style="flex: 1 1 0; border: 1px solid #2A323A; padding: 10px 4px; background: #161B20">BANK<br><span style="color: #9AA7B2">1 B</span></div>
+      <div style="flex: 1 1 0; border: 1px solid #2A323A; padding: 10px 4px; background: #161B20">TYPE<br><span style="color: #9AA7B2">1 B</span></div>
+      <div style="flex: 2 1 0; border: 1px solid #FF7A1A; padding: 10px 4px; background: #161B20">COUNTER<br><span style="color: #9AA7B2">4 B · no replay</span></div>
+      <div style="flex: 4 1 0; border: 1px solid #2A323A; padding: 10px 4px; background: #161B20">PAYLOAD<br><span style="color: #9AA7B2">pads · nonce · Ω · volts</span></div>
+      <div style="flex: 3 1 0; border: 1px solid #3BE07A; padding: 10px 4px; background: #0D2A17">AES-128-CMAC<br><span style="color: #9AA7B2">8 B · paired key</span></div>
+      <div style="flex: 1 1 0; border: 1px solid #46E0FF; padding: 10px 4px; background: #161B20">CRC<br><span style="color: #9AA7B2">LoRa</span></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; font-size: 14px; line-height: 1.45; color: #C9D3DB">
+      <div><span style="color: #46E0FF; font-weight: 600">CRC</span> catches a corrupted packet. <span style="color: #3BE07A; font-weight: 600">CMAC</span> catches one the system didn't send: a stray remote, another launcher, noise. A CRC alone can't do that, because anyone can compute one.</div>
+      <div><span style="color: #FF7A1A; font-weight: 600">Counter</span> + a challenge nonce for ARM mean a recorded FIRE packet can't be replayed. Pairing over USB or an NFC tap writes a new random key, and there is no default key.</div>
+      <div><span style="color: #E8EEF2; font-weight: 600">Heartbeat</span> runs at 4 Hz both ways. After 1 s without a valid one, the pad box drops the pyro contactor. This is the fix for a garage-door-opener launcher that fires on its own.</div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 2px; color: #46E0FF">WHAT IT COSTS · PRICED BOM REV A, USD</div>
+      <div style="font-size: 13px; color: #9AA7B2">Priced line by line on 2026-11-18. The rough ±25% guess was low.</div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr; border: 1px solid #2A323A; border-radius: 10px; overflow: hidden; font-size: 15px">
+      <div style="padding: 10px 14px; background: #161B20; color: #9AA7B2; font-family: 'JetBrains Mono', monospace; font-size: 12px">ITEM</div>
+      <div style="padding: 10px 14px; background: #161B20; color: #9AA7B2; font-family: 'JetBrains Mono', monospace; font-size: 12px; text-align: right">HALO</div>
+      <div style="padding: 10px 14px; background: #161B20; color: #9AA7B2; font-family: 'JetBrains Mono', monospace; font-size: 12px; text-align: right">FLIGHTDECK</div>
+      <div style="padding: 10px 14px; background: #161B20; color: #9AA7B2; font-family: 'JetBrains Mono', monospace; font-size: 12px; text-align: right">MONOLITH</div>
+      <div style="padding: 10px 14px; background: #161B20; color: #9AA7B2; font-family: 'JetBrains Mono', monospace; font-size: 12px; text-align: right">RELAY-6</div>
+
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A">Core: ESP32-S3 + SX1262, OLED, GPS, NFC, audio, battery, key, e-stop, encoder, boards</div>
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A; text-align: right">287</div>
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A; text-align: right">287</div>
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A; text-align: right">287</div>
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A; text-align: right; color: #6B7884">—</div>
+
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A">Case, panel and that concept's controls</div>
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A; text-align: right">142</div>
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A; text-align: right">239</div>
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A; text-align: right">211</div>
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A; text-align: right; color: #6B7884">—</div>
+
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A">Pad box: 6 MOSFET channels, 40 A relay, 12 V SLA, ammo can, beacon, anemometer, siren, leads</div>
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A; text-align: right; color: #6B7884">—</div>
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A; text-align: right; color: #6B7884">—</div>
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A; text-align: right; color: #6B7884">—</div>
+      <div style="padding: 9px 14px; border-top: 1px solid #2A323A; text-align: right">632</div>
+
+      <div style="padding: 10px 14px; border-top: 1px solid #FF7A1A; background: #161B20; font-weight: 600">Each unit</div>
+      <div style="padding: 10px 14px; border-top: 1px solid #FF7A1A; background: #161B20; text-align: right; font-weight: 600">≈ 430</div>
+      <div style="padding: 10px 14px; border-top: 1px solid #FF7A1A; background: #161B20; text-align: right; font-weight: 600">≈ 527</div>
+      <div style="padding: 10px 14px; border-top: 1px solid #FF7A1A; background: #161B20; text-align: right; font-weight: 600">≈ 499</div>
+      <div style="padding: 10px 14px; border-top: 1px solid #FF7A1A; background: #161B20; text-align: right; font-weight: 600">≈ 632</div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+      <div style="background: #161B20; border: 1px solid #2A323A; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 4px"><div style="font-size: 14px; color: #9AA7B2">One controller + pad box</div><div style="font-size: 30px; font-weight: 700">≈ $1,062</div></div>
+      <div style="background: #161B20; border: 1px solid #FF7A1A; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 4px"><div style="font-size: 14px; color: #9AA7B2">All three controllers + one pad box</div><div style="font-size: 30px; font-weight: 700">≈ $2,087</div></div>
+      <div style="background: #161B20; border: 1px solid #2A323A; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 4px"><div style="font-size: 14px; color: #9AA7B2">Pad box + HALO, no GPS/NFC</div><div style="font-size: 30px; font-weight: 700">≈ $975</div></div>
+    </div>
+  </div>
+
+  <div style="margin-top: auto; border-top: 1px solid #2A323A; padding-top: 14px; font-size: 14px; color: #9AA7B2; line-height: 1.5">Where the money goes: the pad box (≈ $632, with multi-packs whose spares serve later builds), then GPS + NFC (≈ $87 per controller) and the panels. To spend less, build the core and pad box first, fly them with HALO, and add FLIGHTDECK and MONOLITH as new faces on the same electronics.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":1100}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

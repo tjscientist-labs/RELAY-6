@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Concept B: FLIGHTDECK</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#46E0FF}a:hover{color:#9BEFFF}
+</style>
+</helmet>
+<div style="width: 1200px; height: 900px; box-sizing: border-box; padding: 40px; background: #0E1114; color: #E8EEF2; font-family: 'Chakra Petch', sans-serif; display: flex; gap: 40px">
+  <svg width="760" height="820" viewBox="0 0 760 820" role="img" aria-label="Top-down view of the FLIGHTDECK controller open: an orange case, OLED and checklist in the lid, six red missile-switch covers in a row, and two-hand fire buttons in the base">
+    <defs>
+      <pattern id="haz" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="20" fill="#E8C930"></rect><rect x="10" width="10" height="20" fill="#14181C"></rect></pattern>
+      <filter id="g2" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"></feGaussianBlur></filter>
+      <linearGradient id="cover" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF4A4A" stop-opacity="0.95"></stop><stop offset="1" stop-color="#9E0F16" stop-opacity="0.95"></stop></linearGradient>
+    </defs>
+    <rect x="40" y="20" width="680" height="330" rx="26" fill="#E2611A" stroke="#B84A10" stroke-width="3"></rect>
+    <rect x="66" y="46" width="628" height="278" rx="12" fill="#15191D"></rect>
+    <rect x="90" y="68" width="330" height="120" rx="8" fill="#050708" stroke="#3A444D" stroke-width="2"></rect>
+    <text x="106" y="98" font-family="JetBrains Mono, monospace" font-size="14" fill="#C6FF3D">FLIGHTDECK  ▸ SELECT</text>
+    <text x="106" y="138" font-family="JetBrains Mono, monospace" font-size="28" font-weight="600" fill="#C6FF3D">PAD 2 · 4</text>
+    <text x="106" y="170" font-family="JetBrains Mono, monospace" font-size="14" fill="#C6FF3D" opacity="0.8">Ω 1.2 · 0.9   LINK OK</text>
+    <rect x="440" y="68" width="230" height="230" rx="8" fill="#EDE6D3"></rect>
+    <text x="456" y="96" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#14181C">LAUNCH CHECKLIST</text>
+    <g font-family="JetBrains Mono, monospace" font-size="12" fill="#2A323A">
+      <text x="456" y="124">☐ Range clear, sky clear</text>
+      <text x="456" y="146">☐ Wind under 20 mph</text>
+      <text x="456" y="168">☐ Pad box key: ARM</text>
+      <text x="456" y="190">☐ Continuity: all green</text>
+      <text x="456" y="212">☐ Select pads</text>
+      <text x="456" y="234">☐ Master key: ARM</text>
+      <text x="456" y="256">☐ Call the count</text>
+      <text x="456" y="278">☐ Both hands: FIRE</text>
+    </g>
+    <rect x="90" y="206" width="330" height="92" rx="8" fill="#1C2228"></rect>
+    <g stroke="#2E373F" stroke-width="3"><line x1="110" y1="222" x2="110" y2="282"></line><line x1="124" y1="222" x2="124" y2="282"></line><line x1="138" y1="222" x2="138" y2="282"></line><line x1="152" y1="222" x2="152" y2="282"></line><line x1="166" y1="222" x2="166" y2="282"></line><line x1="180" y1="222" x2="180" y2="282"></line></g>
+    <text x="210" y="248" font-family="JetBrains Mono, monospace" font-size="12" fill="#9AA7B2">SPEAKER</text>
+    <text x="210" y="272" font-family="JetBrains Mono, monospace" font-size="12" fill="#9AA7B2">GPS · LoRa · USB-C</text>
+    <rect x="160" y="350" width="120" height="30" rx="6" fill="#B84A10"></rect>
+    <rect x="480" y="350" width="120" height="30" rx="6" fill="#B84A10"></rect>
+    <rect x="40" y="380" width="680" height="420" rx="26" fill="#E2611A" stroke="#B84A10" stroke-width="3"></rect>
+    <rect x="66" y="406" width="628" height="368" rx="12" fill="#15191D"></rect>
+    <g font-family="JetBrains Mono, monospace" font-size="13" text-anchor="middle">
+      <rect x="96" y="424" width="64" height="10" rx="3" fill="#3BE07A"></rect>
+      <rect x="196" y="424" width="64" height="10" rx="3" fill="#FF7A1A"></rect>
+      <rect x="296" y="424" width="64" height="10" rx="3" fill="#3BE07A"></rect>
+      <rect x="396" y="424" width="64" height="10" rx="3" fill="#FF7A1A"></rect>
+      <rect x="496" y="424" width="64" height="10" rx="3" fill="#FF3B3B"></rect>
+      <rect x="596" y="424" width="64" height="10" rx="3" fill="#2A323A"></rect>
+      <rect x="196" y="424" width="64" height="10" rx="3" fill="#FF7A1A" filter="url(#g2)"></rect>
+      <rect x="396" y="424" width="64" height="10" rx="3" fill="#FF7A1A" filter="url(#g2)"></rect>
+      <rect x="100" y="448" width="56" height="110" rx="8" fill="url(#cover)" stroke="#5A0A0E" stroke-width="2"></rect>
+      <rect x="200" y="448" width="56" height="44" rx="8" fill="url(#cover)" stroke="#5A0A0E" stroke-width="2" opacity="0.65"></rect>
+      <rect x="210" y="500" width="36" height="58" rx="4" fill="#2A323A"></rect><rect x="223" y="488" width="10" height="40" rx="5" fill="#D8DEE3"></rect>
+      <rect x="300" y="448" width="56" height="110" rx="8" fill="url(#cover)" stroke="#5A0A0E" stroke-width="2"></rect>
+      <rect x="400" y="448" width="56" height="44" rx="8" fill="url(#cover)" stroke="#5A0A0E" stroke-width="2" opacity="0.65"></rect>
+      <rect x="410" y="500" width="36" height="58" rx="4" fill="#2A323A"></rect><rect x="423" y="488" width="10" height="40" rx="5" fill="#D8DEE3"></rect>
+      <rect x="500" y="448" width="56" height="110" rx="8" fill="url(#cover)" stroke="#5A0A0E" stroke-width="2"></rect>
+      <rect x="600" y="448" width="56" height="110" rx="8" fill="url(#cover)" stroke="#5A0A0E" stroke-width="2"></rect>
+      <text x="128" y="580" fill="#C9D3DB">PAD 1</text><text x="228" y="580" fill="#FF7A1A">PAD 2</text><text x="328" y="580" fill="#C9D3DB">PAD 3</text><text x="428" y="580" fill="#FF7A1A">PAD 4</text><text x="528" y="580" fill="#FF6B6B">PAD 5</text><text x="628" y="580" fill="#6B7884">PAD 6</text>
+    </g>
+    <rect x="96" y="600" width="568" height="150" rx="10" fill="url(#haz)"></rect>
+    <rect x="106" y="610" width="548" height="130" rx="6" fill="#15191D"></rect>
+    <circle cx="170" cy="675" r="38" fill="#0A0D10" stroke="#3A444D" stroke-width="3"></circle>
+    <circle cx="170" cy="675" r="28" fill="#3BE07A"></circle>
+    <text x="170" y="681" text-anchor="middle" font-family="Chakra Petch, sans-serif" font-size="16" font-weight="700" fill="#06210F">ARM</text>
+    <circle cx="590" cy="675" r="38" fill="#0A0D10" stroke="#3A444D" stroke-width="3"></circle>
+    <circle cx="590" cy="675" r="28" fill="#FF3B3B"></circle>
+    <text x="590" y="681" text-anchor="middle" font-family="Chakra Petch, sans-serif" font-size="16" font-weight="700" fill="#FFF">FIRE</text>
+    <circle cx="300" cy="675" r="26" fill="#2A323A" stroke="#4A555F" stroke-width="2"></circle>
+    <rect x="294" y="655" width="12" height="40" rx="3" fill="#C9D3DB" transform="rotate(35 300 675)"></rect>
+    <text x="300" y="722" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#9AA7B2">MASTER</text>
+    <circle cx="460" cy="675" r="34" fill="#E8C930"></circle>
+    <circle cx="460" cy="675" r="25" fill="#C4161C"></circle>
+    <text x="460" y="726" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#9AA7B2">E-STOP</text>
+    <text x="380" y="650" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#9AA7B2">MODE</text>
+    <rect x="352" y="660" width="56" height="30" rx="15" fill="#2A323A"></rect><circle cx="392" cy="675" r="11" fill="#C9D3DB"></circle>
+    <text x="380" y="712" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#6B7884">SEL · SALVO</text>
+    <rect x="150" y="796" width="70" height="18" rx="5" fill="#14181C"></rect>
+    <rect x="345" y="796" width="70" height="18" rx="5" fill="#14181C"></rect>
+    <rect x="540" y="796" width="70" height="18" rx="5" fill="#14181C"></rect>
+  </svg>
+  <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 22px; padding-top: 10px">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 3px; color: #FF7A1A">CONCEPT B</div>
+    <h2 style="margin: 0; font-size: 64px; font-weight: 700; line-height: 0.9; letter-spacing: 2px">FLIGHT&#8203;DECK</h2>
+    <div style="font-size: 19px; color: #C9D3DB; line-height: 1.45">A 1960s blockhouse console in an orange field case. Six red missile-switch covers, one per pad, then a hazard-striped fire zone you work with both hands.</div>
+    <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; line-height: 1.45; color: #C9D3DB">
+      <div><span style="color: #C6FF3D; font-weight: 600">Missile switches</span> — lift a cover and flip the toggle to put that pad in the shot, then read the status bar above it. Every lifted cover is in the salvo, so the panel shows what will fire.</div>
+      <div><span style="color: #C6FF3D; font-weight: 600">Two-hand fire</span> — ARM on the left, FIRE on the right, 450 mm apart, both held. One hand can't fire it by accident.</div>
+      <div><span style="color: #C6FF3D; font-weight: 600">Lid</span> — an OLED in lime phosphor, next to a backlit checklist card you can swap for your club's procedure.</div>
+      <div><span style="color: #C6FF3D; font-weight: 600">Master key + e-stop</span> — both in the fire zone, where your hands already are.</div>
+    </div>
+    <div style="margin-top: auto; border-top: 1px solid #2A323A; padding-top: 16px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #9AA7B2; line-height: 1.45">
+      <div><span style="color: #E8EEF2">Case:</span> safety-orange 1500-size shell. Room for a big battery.</div>
+      <div><span style="color: #E8EEF2">Panel:</span> 3 mm aluminium, powder-coated, with engraved legends. Hazard stripe in vinyl.</div>
+      <div><span style="color: #E8EEF2">Feels like:</span> a Gemini blockhouse in a box.</div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
