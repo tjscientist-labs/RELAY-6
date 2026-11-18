@@ -1,5 +1,5 @@
 #!/bin/sh
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: GPL-2.0-or-later
 # Rebuild every drawing and printable PDF for the RELAY-6 wireless launcher and join the build pack.
 # Run from the repo root:   sh src/make_pack.sh
 # Needs: python3, node (for nothing here), google-chrome or chromium, pdfunite (poppler-utils),

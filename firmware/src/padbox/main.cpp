@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // RELAY-6 pad box application: reads the hardware (E-2, E-3) into relay6::PadBox and drives the pins from it.
 // All decisions are in lib/relay6_core/padbox.cpp; this file only moves data. Radio turn-taking: the pad box
 // transmits only immediately after it has received a valid packet, so the two ends never talk over each other.

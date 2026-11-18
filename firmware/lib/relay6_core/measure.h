@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // Igniter resistance from the two ADS1115 readings, and the ignition timer from the shunt current.
 #pragma once
 #include <cstdint>

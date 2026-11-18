@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: GPL-2.0-or-later
 """Single geometry source for the RELAY-6 launcher: cases, panels, holes. Units: mm.
 
 Panel coordinates: origin at the panel centre, x to the right, y towards the hinge (away from the user).

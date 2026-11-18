@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // Controller application (HALO / FLIGHTDECK / MONOLITH, chosen at build time). Reads the panel into
 // relay6::Controller, draws the OLED screens from the concept sheet, beeps the count, and moves packets.
 #include <Arduino.h>

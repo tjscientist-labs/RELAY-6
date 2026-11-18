@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: GPL-2.0-or-later
 """Tiny dimetric renderer for the launcher views (mm in, SVG px out).
 
 World axes: x to the right (case width), y away from the viewer (case depth), z up.

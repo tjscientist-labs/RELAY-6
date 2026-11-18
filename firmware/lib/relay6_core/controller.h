@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // Controller logic, shared by HALO, FLIGHTDECK and MONOLITH (they differ only in how the panel is read).
 // Arming happens only while FIRE is held: hold FIRE -> ARM_REQ -> CHALLENGE -> ARM -> ARMED -> 5 s count
 // -> FIRE -> FIRED. Releasing FIRE (or the key, or the cover) at any point sends SAFE.

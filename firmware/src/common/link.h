@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // Radio + persistent pairing/counters + the serial console, shared by the pad box and the controllers.
 #pragma once
 #include <Arduino.h>

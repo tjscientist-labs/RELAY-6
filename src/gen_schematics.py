@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: GPL-2.0-or-later
 """Electrical drawings E-1 … E-6 for the six-pad wireless launcher.
 
     python3 -I src/gen_schematics.py figs

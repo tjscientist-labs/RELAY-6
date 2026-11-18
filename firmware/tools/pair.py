@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: GPL-2.0-or-later
 """Make a new pairing for one controller + one RELAY-6 pad box.
 
     python3 tools/pair.py [bank]

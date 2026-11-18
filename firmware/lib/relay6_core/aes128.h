@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // AES-128 block encryption (FIPS-197), encrypt direction only — all CMAC needs.
 // Portable C++, no platform code. On the ESP32-S3 the hardware AES could replace it later;
 // this version is used on every target so the host tests check the exact code that ships.

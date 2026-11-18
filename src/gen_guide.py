@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: GPL-2.0-or-later
 """Build guide for the six-pad wireless launcher (US Letter, portrait, prints to PDF).
 
     python3 -I src/gen_guide.py            # from the repo root

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // AES-128-CMAC (RFC 4493 / NIST SP 800-38B) and a constant-time tag compare.
 #pragma once
 #include <cstddef>

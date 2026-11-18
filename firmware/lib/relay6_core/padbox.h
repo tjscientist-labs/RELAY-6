@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // RELAY-6 pad box logic (drawing E-6). Pure logic: the application reads the hardware into Inputs,
 // calls tick(), drives the pins from out(), and moves packets between the radio and onPacket()/nextTx().
 // The pad box is the authority: every path back to SAFE is automatic, every path forward needs a fresh,

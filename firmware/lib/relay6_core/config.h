@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // Timing and limits. The build guide's section 11 ("Timing and limits") lists the same values; change both together.
 #pragma once
 #include <cstdint>

@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: GPL-2.0-or-later
 """Minimal DXF (R12, mm) writer: LINE, CIRCLE, ARC and closed LWPOLYLINE-free outlines.
 
 R12 needs no handles or classes and opens in LightBurn, Inkscape, LibreCAD, Fusion and every

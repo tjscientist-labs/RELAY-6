@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: GPL-2.0-or-later
 """Cut sheets P-1 … P-9 (11×17, 1:1 templates) + hole schedules + DXF files, all from parts.py.
 
     python3 -I src/gen_shop.py          # from the repo root

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // The three panels differ only here: how pad selection, FIRE, the cover and the lights are read and written.
 #pragma once
 #include <cstdint>

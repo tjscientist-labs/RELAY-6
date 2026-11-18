@@ -44,7 +44,7 @@ Wireless, two-way comms, a nice OLED, as many features from TeleLaunch and the O
 - **Build all three concepts.** They share one electronics core and one RELAY-6 pad box; only the panel and case differ. Any of the three controllers pairs with the pad box.
 - **Radio: LoRa, licence-free** (915 MHz US; 868 MHz build option for Europe). LoRa needs no licence, so anyone can build and use it (a 70 cm ham version would not). Condition: it has to be safe, with every message CRC-checked or equivalent. Answer: the LoRa hardware CRC catches corrupted packets, and an AES-128-CMAC tag on every packet rejects packets the system did not send (see the link protocol below).
 - **HPR: yes.** Clusters and high-current igniters. The pad box sits at the rack, so leads stay short.
-- **Licence: GPL v2 only** (decided 2026-11-18), for the firmware, generators, drawings and documents alike. Public repo: https://github.com/tjscientist-labs/RELAY-6
+- **Licence: GPL v2 or later** (decided 2026-11-18), for the firmware, generators, drawings and documents alike. Public repo: https://github.com/tjscientist-labs/RELAY-6
 - **Budget:** "a bit expensive is fine, but it shouldn't cost too much." See the cost estimate.
 
 ## Link protocol (safety)

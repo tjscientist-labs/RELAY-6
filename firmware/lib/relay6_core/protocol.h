@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // RELAY-6 link protocol: packet layout, message types, sealing (CMAC) and opening (verify + replay check).
 //
 //   offset  size  field

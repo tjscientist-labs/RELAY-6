@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: GPL-2.0-or-later
 """RELAY-6 pad box parts, priced 2026-11-18. Imported by bom_data.py."""
 from bom_data import I, DK, AF, AMZ
 

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // Host tests for relay6_core: crypto vectors, packet sealing, and end-to-end runs of a controller and a pad box
 // joined by an in-memory link (with an attacker in the middle for the replay tests).
 //   make -C test/host        (plain g++, no PlatformIO needed)

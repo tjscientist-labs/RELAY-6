@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: GPL-2.0-only
+// SPDX-License-Identifier: GPL-2.0-or-later
 // Heltec WiFi LoRa 32 V3 pins and radio settings. Proposed map: check every row against Heltec's current V3
 // pinout before soldering (build guide Stage 2 and section 11). Pins the board itself uses are left alone:
 // SX1262 on 8–14, on-board OLED 17/18/21, Vext 36, LED 35, PRG 0, USB-serial 43/44, battery sense 1/37.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: GPL-2.0-or-later
 """Rendered views V-1 … V-6 from parts.py (dimetric, painter's algorithm).
 
     python3 -I src/gen_views.py figs

@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: GPL-2.0-only
+# SPDX-License-Identifier: GPL-2.0-or-later
 """Small SVG drafting kit for the wireless-launcher drawings (schematics, views, shop sheets).
 
 Print style: white paper, black linework, one accent. Units are SVG px unless a function says mm.

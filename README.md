@@ -46,6 +46,6 @@ Build it, test it with the gates in the build guide and fly it under the NAR / T
 ## Licence
 
 Copyright © 2026 tjscientist. Everything here (firmware, generators, drawings, DXF files, BOM and documents) is
-licensed under the **GNU General Public License, version 2 only** (`GPL-2.0-only`); see `LICENSE`.
+licensed under the **GNU General Public License, version 2 or (at your option) any later version** (`GPL-2.0-or-later`); see `LICENSE`.
 It is distributed WITHOUT ANY WARRANTY. Libraries the firmware downloads at build time (RadioLib, U8g2,
 Adafruit ADS1X15 / MCP23017 / NeoPixel, robtillaart INA228) keep their own licences.
